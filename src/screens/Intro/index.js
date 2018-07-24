@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-import { Button, View, Text } from 'react-native';
+
+import { Platform, Button, View, Text } from 'react-native';
 import { HOME_SCREEN } from '../../constants/routes';
 
-export class DetailsScreen extends Component {
+export class IntroScreen extends Component {
   static navigationOptions = {
-      title: 'Details',
+      title: 'Intro',
     };
 
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>this is a Details screen</Text>
+        <Text>this is a IntroScreen screen</Text>
+        <Text>${Platform.OS}</Text>
         <Button
-            title="Go to Home1"
+            title="Go to Home"
             onPress={() => this.props.navigation.navigate(HOME_SCREEN)}
         />
       </View>
@@ -20,4 +22,4 @@ export class DetailsScreen extends Component {
   }
 }
 
-export default DetailsScreen;
+export default IntroScreen;

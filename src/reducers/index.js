@@ -6,10 +6,12 @@ import {
 import { 
     app,
     nav,
-    auth,
 } from './app';
 import { 
 } from './domain';
+import { 
+    random,
+} from './random';
 
 
 export default combineReducers({
@@ -18,5 +20,5 @@ export default combineReducers({
     }),
     app,
     nav,
-    auth,
+    random
 });

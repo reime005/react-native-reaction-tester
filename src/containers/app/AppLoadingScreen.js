@@ -10,7 +10,8 @@ import { AppLoadingError } from '../../components';
 
 import { assetImages } from '../../../assets/images';
 import { fonts } from '../../../assets/fonts';
-import { loadAppResources, resetToMainRoute, resetToSignInRoute } from '../../actions';
+import { loadAppResources } from '../../actions';
+import { resetToMainRoute } from '../../actions/app/nav';
 
 const IMAGES_TO_LOAD = _.toArray(assetImages);
 
@@ -27,7 +28,6 @@ class _AppLoadingScreen extends Component  {
         // booleans
         loading: PropTypes.bool.isRequired,
         isAppReady: PropTypes.bool.isRequired,
-        hasAuthToken: PropTypes.bool.isRequired,
     }
 
     componentWillMount() {
@@ -70,7 +70,9 @@ class _AppLoadingScreen extends Component  {
 
     _handleFinishLoading = (props) => {
         console.log('All Pre-loading complete!');
-        props.resetRoute(props.hasAuthToken, props.isAppDirty);
+        console.log("log")
+        props.resetRoute();
+        // props.navigation.dispatch({type: "Intro/IntroScreen"})
     };
 }
 
@@ -78,8 +80,6 @@ const mapStateToProps = (state, ownProps) => ({
     loading: state.ui.appLoading.loading,
     isAppReady: state.ui.appLoading.ready,
     loadingError: state.ui.appLoading.error,
-    hasAuthToken: !!state.auth.authToken, // replaced with some states
-    isAppDirty: state.app.isAppDirty,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -88,9 +88,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
      * Reset route to auth route or main route when all resources is ready.
      * At this point, the flag whether an auth token is stored in the app should be determined.
      */
-    resetRoute: (hasAuthToken, isAppDirty) => {
+    resetRoute: () => {
         console.log('resetRoute');
-        dispatch(hasAuthToken? resetToMainRoute(): resetToSignInRoute());
+        dispatch(resetToMainRoute());
     }
 });
 

@@ -1,7 +1,7 @@
 import {
     LOAD_APP_RESOURCES_SUCCESS,
 } from '../../actions';
-import { setItemToStore } from '../../lib/storage/index';
+import { setItemToStore } from '../../lib/storage';
 import { storageKeys } from '../../constants/keys';
 
 const INITIAL_STATE = {
