@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "expo-redux-saga-boilerplate",
-    "description": "An empty new project",
-    "slug": "expo-redux-saga-boilerplate",
+    "name": "react-native-reaction-tester",
+    "description": "React Native reaction time tester",
+    "slug": "react-native-reaction-tester",
     "privacy": "public",
     "sdkVersion": "25.0.0",
     "version": "1.0.0",
@@ -12,7 +12,7 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#b2d1fb"
     },
     "ios": {
       "supportsTablet": true

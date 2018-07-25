@@ -1,19 +1,11 @@
-# expo-redux-saga-boilerplate
+# react-native-reaction-tester
 
-A boilerplate for React Native (Expo), with Redux, Redux Saga and React Navigation.
-Heavily inspired by https://github.com/jacobtoye/react-native-redux-boilerplate
+Built on expo-redux-saga-boilerplate. Using React Native (Expo), with Redux, Redux Saga, React Navigation, Vector Icons, Swiper and random.org API.
 
 # Usage
 
-New Project:
 1. run `yarn` or `npm install`
 2. Run your project using Expo / CRNA.
-
-Existing Project:
-
-1. Replace `App.js`, `assets` and `src` in your Expo / Create-React-Native-App project.
-2. Copy all dependencies from `package.json` and run `yarn` or `npm install`
-3. Run your project using Expo / CRNA.
 
 # Stack Used
 
@@ -29,3 +21,6 @@ Existing Project:
 | Axios                 | HTTP request libraries                              |
 | expo-env              | Environment variables support for RN app using Expo |
 
+# Author
+
+© 2018 [reime005](https://github.com/reime005)

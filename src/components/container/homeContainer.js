@@ -15,7 +15,7 @@ const HomeContainer = (props) => (
   <View style={{ 
     flex: 1, 
     backgroundColor: props.currentColor,
-    propsalignItems: 'center',
+    alignItems: 'center',
     justifyContent: 'center'
   }}>
   {

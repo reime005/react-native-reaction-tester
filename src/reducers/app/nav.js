@@ -23,7 +23,7 @@ export const nav = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case RESET_TO_MAIN_ROUTE:
         {
-            const resetToMainAction = getResetAction(HOME_SCREEN);
+            const resetToMainAction = getResetAction(INTRO_SCREEN);
             nextState = RootNavigator.router.getStateForAction(resetToMainAction, state);
             break;
         }

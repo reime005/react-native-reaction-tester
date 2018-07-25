@@ -14,30 +14,27 @@ import {
 import colors from "../reducers/random/colors";
 
 export function* newRound() {
-  // check if game over --> game info calc + set + color none
   let currentRound = yield select(selectors.getCurrentRound);
   const numbers = yield select(selectors.getNumbers);
-  
-  if (currentRound + 1 >= numbers.length) {
-    yield call(endCurrentRound, currentRound);
-    yield call(triggerGameEnd);
-    return;
-  }
 
-  // first end current round, then start new round
+  // check if round end is valid, else currentRound will be decremented
   if (currentRound >= 0) {
     currentRound = yield call(endCurrentRound, currentRound);
   } 
 
   currentRound++;
 
-  if (currentRound <= numbers.length) { 
-    // round start red (listener) --> round end green
+  if (currentRound < numbers.length) { 
+    // if there are new rounds left, start timer and change color
     yield call(startNewRound, currentRound, numbers[currentRound]);
-  } 
+  } else {
+    // game over
+    yield call(triggerGameEnd);
+  }
 }
 
 function* triggerGameEnd() {
+  // change color and calc game end time info
   const currentColor = yield select(selectors.getCurrentColor);
   if (currentColor !== colors.NONE) {
     const roundEndTimes = yield select(selectors.getRoundEndTimes);
@@ -46,7 +43,8 @@ function* triggerGameEnd() {
 
     roundEndTimes.forEach((el, index) => {
       if (typeof el === 'undefined' || 
-      typeof roundStartTimes[index] === 'undefined') {
+        typeof roundStartTimes[index] === 'undefined') {
+        // to be used if rounds can be invalid
         gameOverInfo[index] = 'failed';
       } else {
         gameOverInfo[index] = el.getTime() - roundStartTimes[index].getTime();
@@ -59,9 +57,7 @@ function* triggerGameEnd() {
 
 function* startNewRound(currentRound, seconds) {
   const channel = yield call(createIntervalChannel, 
-    1);
-  
-  console.log("");
+    seconds);
   
   yield put(setStartNewRoundAction(channel, currentRound));
 
@@ -74,7 +70,7 @@ function* endCurrentRound(currentRound) {
   const channel = yield select(selectors.getChannel);
 
   if (typeof channel === 'undefined') {
-    // "timer" is not there
+    // if "timer" is not there
     yield put(setEndCurrentRoundAction(currentRound, new Date()));
     return currentRound;
   } else {
@@ -101,8 +97,8 @@ function createIntervalChannel(seconds) {
 export function* newGame() {
   const _numbers = yield call(axios.get, 'https://www.random.org/integers/', {
     params: {
-      num: 2,
-      min: 3,
+      num: 5,
+      min: 1,
       max: 6,
       col: 1,
       base: 10,
