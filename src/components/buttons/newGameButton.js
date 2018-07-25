@@ -6,7 +6,7 @@ import ButtonWrapper from './buttonWrapper';
 import { triggerNewGameSagaAction } from '../../actions';
 
 const NewGameButton = (props) => (
-  <ButtonWrapper title="NewGameButton" onPress={props.newGame}/>
+  <ButtonWrapper title="Start" onPress={props.newGame}/>
 )
 
 export default connect(

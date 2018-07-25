@@ -1,7 +1,7 @@
 import { NavigationActions } from 'react-navigation';
 
 import {
-    INTRO_SCREEN,
+    INTRO_SCREEN, HOME_SCREEN,
 } from '../../constants/routes';
 import { RootNavigator } from '../../containers/navigators';
 
@@ -23,7 +23,7 @@ export const nav = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case RESET_TO_MAIN_ROUTE:
         {
-            const resetToMainAction = getResetAction(INTRO_SCREEN);
+            const resetToMainAction = getResetAction(HOME_SCREEN);
             nextState = RootNavigator.router.getStateForAction(resetToMainAction, state);
             break;
         }

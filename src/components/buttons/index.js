@@ -1,3 +1,1 @@
-/**
- * Components for form inputs and editing.
- */
+export * from './introStartButton';

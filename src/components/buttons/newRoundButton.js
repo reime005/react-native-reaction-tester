@@ -6,7 +6,7 @@ import ButtonWrapper from './buttonWrapper';
 import { triggerNewRoundSagaAction } from '../../actions';
 
 const NewRoundButton = (props) => (
-  <ButtonWrapper title="new round button" onPress={props.newRound}/>
+  <ButtonWrapper title="Click" onPress={props.newRound}/>
 )
 
 export default connect(

@@ -64,6 +64,21 @@ export const random = (state, action) => {
             }
         }
         break;
+        case types.SET_INVALID_ROUND: {
+            const {
+                channel
+            } = nextState;
+
+            if (channel && channel.close) {
+                channel.close();
+            }
+
+            nextState = {
+                ...nextState,
+                channel: undefined
+            }
+        }
+        break;
         case types.SET_END_GAME: {
             nextState = {
                 ...nextState,

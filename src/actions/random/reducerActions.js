@@ -1,5 +1,6 @@
 export const SET_NEW_ROUND = 'SET_NEW_ROUND';
 export const SET_NEW_GAME = 'SET_NEW_GAME';
+export const SET_INVALID_ROUND = 'SET_INVALID_ROUND';
 
 export const SET_START_NEW_ROUND = 'SET_START_NEW_ROUND';
 
@@ -12,6 +13,12 @@ export const SET_END_GAME = 'SET_END_GAME';
 export function setNewRoundAction() {
   return {
     type: SET_NEW_ROUND,
+  }
+}
+
+export function setInvalidRoundAction() {
+  return {
+    type: SET_INVALID_ROUND,
   }
 }
 

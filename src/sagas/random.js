@@ -8,7 +8,8 @@ import {
   setStartNewRoundAction,
   setEndCurrentRoundAction, 
   setRoundTimerEndAction, 
-  setEndGameAction
+  setEndGameAction,
+  setInvalidRoundAction
 } from "../actions";
 import colors from "../reducers/random/colors";
 
@@ -25,15 +26,15 @@ export function* newRound() {
 
   // first end current round, then start new round
   if (currentRound >= 0) {
-    yield call(endCurrentRound, currentRound);
-  }
+    currentRound = yield call(endCurrentRound, currentRound);
+  } 
 
   currentRound++;
 
-  if (currentRound < numbers.length) { 
+  if (currentRound <= numbers.length) { 
     // round start red (listener) --> round end green
-    currentRound = yield call(startNewRound, currentRound, numbers[currentRound]);
-  }
+    yield call(startNewRound, currentRound, numbers[currentRound]);
+  } 
 }
 
 function* triggerGameEnd() {
@@ -44,7 +45,8 @@ function* triggerGameEnd() {
     let gameOverInfo = [];
 
     roundEndTimes.forEach((el, index) => {
-      if (typeof el === 'undefined') {
+      if (typeof el === 'undefined' || 
+      typeof roundStartTimes[index] === 'undefined') {
         gameOverInfo[index] = 'failed';
       } else {
         gameOverInfo[index] = el.getTime() - roundStartTimes[index].getTime();
@@ -57,8 +59,10 @@ function* triggerGameEnd() {
 
 function* startNewRound(currentRound, seconds) {
   const channel = yield call(createIntervalChannel, 
-    seconds);
-
+    1);
+  
+  console.log("");
+  
   yield put(setStartNewRoundAction(channel, currentRound));
 
   yield take(channel);
@@ -72,8 +76,11 @@ function* endCurrentRound(currentRound) {
   if (typeof channel === 'undefined') {
     // "timer" is not there
     yield put(setEndCurrentRoundAction(currentRound, new Date()));
+    return currentRound;
   } else {
-    yield put(setEndCurrentRoundAction(currentRound, undefined));
+    yield put(setInvalidRoundAction())
+    console.log("teds");
+    return currentRound - 1;
   }
 }
 
