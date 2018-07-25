@@ -1,5 +1,7 @@
 # react-native-reaction-tester
 
+[Expo Link](https://expo.io/@reime005/react-native-reaction-tester)
+
 Built on expo-redux-saga-boilerplate. Using React Native (Expo), with Redux, Redux Saga, React Navigation, Vector Icons, Swiper and random.org API.
 
 # Usage
