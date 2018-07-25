@@ -15,7 +15,12 @@
       "backgroundColor": "#b2d1fb"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mariusreimer.reactiontest"
+
+    },
+    "android": {
+      "package": "com.mariusreimer.reactiontest"
     },
     "extra": {
       "test": "prod"

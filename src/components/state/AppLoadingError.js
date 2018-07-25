@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-elements'
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 import { fontFix, width, height, size } from '../../lib/dimension';
 
