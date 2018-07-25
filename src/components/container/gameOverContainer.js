@@ -26,7 +26,7 @@ const renderInfo = (gameOverInfo) => {
         el = el + "ms";
       }
       return (
-        <Text>Round {i + 1}: {el}</Text>
+        <Text key={i}>Round {i + 1}: {el}</Text>
       )
     })
   )

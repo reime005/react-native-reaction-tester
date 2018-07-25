@@ -8,7 +8,6 @@ import {
   setStartNewRoundAction,
   setEndCurrentRoundAction, 
   setRoundTimerEndAction, 
-  setRoundTimerStartAction,
   setEndGameAction
 } from "../actions";
 import colors from "../reducers/random/colors";
@@ -18,7 +17,7 @@ export function* newRound() {
   let currentRound = yield select(selectors.getCurrentRound);
   const numbers = yield select(selectors.getNumbers);
   
-  if (currentRound + 2 >= numbers.length - 1) {
+  if (currentRound + 1 >= numbers.length) {
     yield call(endCurrentRound, currentRound);
     yield call(triggerGameEnd);
     return;
@@ -31,11 +30,10 @@ export function* newRound() {
 
   currentRound++;
 
-  if (currentRound + 1 < numbers.length - 1) { 
+  if (currentRound < numbers.length) { 
+    // round start red (listener) --> round end green
     currentRound = yield call(startNewRound, currentRound, numbers[currentRound]);
   }
-
-  // round start red (listener) --> round end green
 }
 
 function* triggerGameEnd() {
@@ -59,7 +57,7 @@ function* triggerGameEnd() {
 
 function* startNewRound(currentRound, seconds) {
   const channel = yield call(createIntervalChannel, 
-    0.25);
+    seconds);
 
   yield put(setStartNewRoundAction(channel, currentRound));
 
@@ -94,7 +92,7 @@ function createIntervalChannel(seconds) {
 }
 
 export function* newGame() {
-  const numbers = yield call(axios.get, 'https://www.random.org/integers/', {
+  const _numbers = yield call(axios.get, 'https://www.random.org/integers/', {
     params: {
       num: 2,
       min: 3,
@@ -106,6 +104,11 @@ export function* newGame() {
     }
   });
 
-  yield put(setNewGameAction(numbers.data || []));
+  let numbers = _numbers.data ? _numbers.data
+    .substring(0, _numbers.data.length - 1)
+    .split('\n')
+  : [];
+
+  yield put(setNewGameAction(numbers));
   yield call(newRound);
 }

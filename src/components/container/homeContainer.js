@@ -25,7 +25,6 @@ const HomeContainer = (props) => (
       <GameOverContainer/>
     </View>
     :
-
     <View>
       <NewRoundButton/>
     </View>
