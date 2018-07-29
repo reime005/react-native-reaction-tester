@@ -8,7 +8,6 @@ import {
   createReduxBoundAddListener,
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
-import { addNavigationHelpers } from 'react-navigation';
 
 // Here to import root component, reducer, saga
 import AppNavigator from '../navigators/AppNavigator';

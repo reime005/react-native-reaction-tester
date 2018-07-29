@@ -47,11 +47,6 @@ class _AppNavigator extends React.Component {
         });
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     const nextRoute = getCurrentRoute(nextProps.nav).routeName;
-    //     console.log('Next route: '+nextRoute);
-    // }
-
     componentDidUpdate(prevProps, prevState) {
         if(! _.isEqual(prevProps.nav, this.props.nav)) {
             this.props.dispatch({ type: CLEAR_ALL_BLOCKED_EFFECTS });

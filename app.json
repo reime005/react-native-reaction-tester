@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "react-native-reaction-tester",
-    "description": "test your reaction in 5 steps",
+    "name": "Reactive Tester",
+    "description": "Test your reaction in 5 steps. Wait until the screen becomes green!",
     "slug": "react-native-reaction-tester",
     "privacy": "public",
     "sdkVersion": "25.0.0",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
     "icon": "./assets/images/icon.png",
@@ -19,6 +19,7 @@
       "bundleIdentifier": "com.mariusreimer.reactivetester"
     },
     "android": {
+      "versionCode": 2,
       "package": "com.mariusreimer.reactivetester"
     },
     "githubUrl": "https://github.com/reime005/react-native-reaction-tester"

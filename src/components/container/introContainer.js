@@ -54,7 +54,7 @@ const _IntroContainer = (props) => (
     <Swiper showsButtons={true}>
       <View style={slide(colors.NONE)}>
         <Text style={styles.textH1}>Reaction Time Tester</Text>
-        <Text style={text('#4d4d4d')}>Test your reaction in 5 steps</Text>
+        <Text style={text('#4d4d4d')}>Test your reaction in 5 steps!</Text>
         <IconView/>
       </View>
       <View style={slide(colors.RED)}>

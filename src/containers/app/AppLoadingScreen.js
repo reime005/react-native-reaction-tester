@@ -70,9 +70,7 @@ class _AppLoadingScreen extends Component  {
 
     _handleFinishLoading = (props) => {
         console.log('All Pre-loading complete!');
-        console.log("log")
         props.resetRoute();
-        // props.navigation.dispatch({type: "Intro/IntroScreen"})
     };
 }
 
@@ -89,7 +87,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
      * At this point, the flag whether an auth token is stored in the app should be determined.
      */
     resetRoute: () => {
-        console.log('resetRoute');
         dispatch(resetToMainRoute());
     }
 });

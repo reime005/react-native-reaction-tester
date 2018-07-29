@@ -75,7 +75,6 @@ function* endCurrentRound(currentRound) {
     return currentRound;
   } else {
     yield put(setInvalidRoundAction())
-    console.log("teds");
     return currentRound - 1;
   }
 }
@@ -95,23 +94,46 @@ function createIntervalChannel(seconds) {
 }
 
 export function* newGame() {
-  const _numbers = yield call(axios.get, 'https://www.random.org/integers/', {
-    params: {
-      num: 5,
-      min: 1,
-      max: 6,
-      col: 1,
-      base: 10,
-      format: 'plain',
-      rnd: 'new'
-    }
-  });
+  let numbers = [];
 
-  let numbers = _numbers.data ? _numbers.data
-    .substring(0, _numbers.data.length - 1)
-    .split('\n')
-  : [];
+  // fetch a 'real random' sequence of numbers
+  try {
+    const response = yield call(axios.get, 'https://www.random.org/integers/', {
+      params: {
+        num: 5,
+        min: 1,
+        max: 6,
+        col: 1,
+        base: 10,
+        format: 'plain',
+        rnd: 'new'
+      },
+      timeout: 5000
+    });
+  
+    response.data ? response.data
+      .substring(0, response.data.length - 1)
+      .split('\n')
+    : [];
+  } catch (e) {
+    console.log(e.message);
+  }
 
+  if (!Array.isArray(numbers) || numbers.length === 0) {
+    // if fetch was not successfull, generate sequence offline
+    numbers = yield call(pseudoRandomNumbers);
+  }
+  
   yield put(setNewGameAction(numbers));
   yield call(newRound);
+}
+
+function* pseudoRandomNumbers() {
+  const numbers = [];
+
+  for (let i = 0; i < 5; i++) {
+    numbers[i] = Math.floor(Math.random() * 6) + 1;
+  }
+
+  return numbers;
 }
