@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "react-native-reaction-tester",
-    "description": "React Native reaction time tester",
+    "description": "test your reaction in 5 steps",
     "slug": "react-native-reaction-tester",
     "privacy": "public",
     "sdkVersion": "25.0.0",
@@ -15,7 +15,12 @@
       "backgroundColor": "#b2d1fb"
     },
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mariusreimer.reactivetester"
+    },
+    "android": {
+      "package": "com.mariusreimer.reactivetester"
+    },
+    "githubUrl": "https://github.com/reime005/react-native-reaction-tester"
   }
 }

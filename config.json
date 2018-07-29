@@ -16,14 +16,11 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.mariusreimer.reactiontest"
-
+      "bundleIdentifier": "com.mariusreimer.reactivetester"
     },
     "android": {
-      "package": "com.mariusreimer.reactiontest"
+      "package": "com.mariusreimer.reactivetester"
     },
-    "extra": {
-      "test": "prod"
-    }
+    "githubUrl": "https://github.com/reime005/react-native-reaction-tester"
   }
 }
